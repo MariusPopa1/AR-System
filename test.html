@@ -23,7 +23,6 @@
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded -->
   <div class="arjs-loader">
     <div>Loading, please wait...</div>
   </div>
@@ -33,32 +32,40 @@
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
+    <!-- First NFT marker for the cat -->
     <a-nft
         type="nft"
         url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/chain"   
-        smooth="true"~
+        smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
     >
        <a-entity
-            position="0 20 -40"
+            position="0 0 0"
             scale="50 50 50"
             gltf-model="cat.glb"
             rotation="0 0 0"
         ></a-entity>
-
+    </a-nft>
+    
+    <!-- Second NFT marker for the T-Rex -->
+    <a-nft
+        type="nft"
+        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/jjk"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+    >
       <a-entity
-        position="0 0 -10"
+        position="0 0 0"
         scale="5 5 5"
         gltf-model="trex.glb"
         rotation="0 90 0"
       ></a-entity>
-
     </a-nft>
     
-    <a-entity camera>
-      
-    </a-entity>
+    <a-entity camera></a-entity>
   </a-scene>
 </body>
