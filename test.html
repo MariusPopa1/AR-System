@@ -32,8 +32,9 @@
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
-    <!-- First NFT marker for the cat -->
+    <!-- First NFT marker for the cats -->
     <a-nft
+        id="firstMarker"
         type="nft"
         url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/chain"   
         smooth="true"
@@ -41,12 +42,6 @@
         smoothTolerance=".01"
         smoothThreshold="5"
     >
-       <a-entity
-            position="0 0 -100"
-            scale="50 50 50"
-            gltf-model="cat.glb"
-            rotation="0 0 0"
-        ></a-entity>
 
         <a-entity
             position="0 -200 -100"
@@ -56,15 +51,23 @@
         ></a-entity>
 
          <a-entity
-            position="0 0 100"
+            position="0 -200 -50"
+            scale="30 30 30"
+            gltf-model="cat.glb"
+            rotation="0 0 0"
+        ></a-entity>
+
+         <a-entity
+            position="0 -200 50"
             scale="70 70 70"
             gltf-model="cat.glb"
             rotation="0 0 0"
         ></a-entity>
     </a-nft>
     
-    <!-- Second NFT marker for the T-Rex -->
+    <!-- Second NFT marker for the T-Rex (initially hidden) -->
     <a-nft
+        id="secondMarker"
         type="nft"
         url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/jjk"
         smooth="true"
@@ -73,13 +76,49 @@
         smoothThreshold="5"
     >
       <a-entity
+        id="trexModel"
         position="0 0 0"
         scale="50 50 50"
         gltf-model="trex.glb"
         rotation="270 0 0"
+        visible="false"
       ></a-entity>
     </a-nft>
     
     <a-entity camera></a-entity>
   </a-scene>
+
+  <script>
+    let firstMarkerScanned = false;
+
+    // Wait for the scene to load
+    document.querySelector('a-scene').addEventListener('loaded', function() {
+      const firstMarker = document.querySelector('#firstMarker');
+      const secondMarker = document.querySelector('#secondMarker');
+      const trexModel = document.querySelector('#trexModel');
+
+      // Listen for when the first marker is found
+      firstMarker.addEventListener('markerFound', function() {
+        console.log('First marker (cats) found!');
+        firstMarkerScanned = true;
+      });
+
+      // Listen for when the second marker is found
+      secondMarker.addEventListener('markerFound', function() {
+        console.log('Second marker found!');
+        // Only show the T-Rex if the first marker has been scanned
+        if (firstMarkerScanned) {
+          trexModel.setAttribute('visible', 'true');
+          console.log('T-Rex is now visible!');
+        } else {
+          console.log('First marker must be scanned first!');
+        }
+      });
+
+      // Hide T-Rex when second marker is lost
+      secondMarker.addEventListener('markerLost', function() {
+        trexModel.setAttribute('visible', 'false');
+      });
+    });
+  </script>
 </body>
