@@ -52,16 +52,6 @@
         ></a-entity>
 
 
-        <a-entity
-            position="100 0 0"
-            scale="150 150 150"
-            gltf-model="models/hornet1.glb"
-            rotation="90 180 0"
-        ></a-entity>
-
-
-
-
         <!-- <a-entity
             position="0 0 50"
             scale="50 50 50"
@@ -83,7 +73,7 @@
     <a-nft
         id="secondMarker"
         type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/jjk"
+        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/staff"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
@@ -93,11 +83,30 @@
         id="trexModel"
         position="0 0 0"
         scale="50 50 50"
-        gltf-model="trex.glb"
-        rotation="270 0 0"
+        gltf-model="models/needle.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+
+            <a-entity
+        id="trexModel"
+        position="0 0 0"
+        scale="50 50 50"
+        gltf-model="models/blade.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+
+            <a-entity
+        id="trexModel"
+        position="0 0 0"
+        scale="50 50 50"
+        gltf-model="models/staff.glb"
+        rotation="0 0 0"
         visible="false"
       ></a-entity>
     </a-nft>
+    
     
     <a-entity camera></a-entity>
   </a-scene>
