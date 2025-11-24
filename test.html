@@ -31,14 +31,16 @@
     renderer="logarithmicDepthBuffer: true;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-     mindar-image="filterMinCF:0.0001; filterBeta: 0.001"
   >
 
     <a-nft
         id="firstMarker"
         type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/chain"   
-
+        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/silksong"     
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
     >
         <a-entity
             position="0 0 0"
