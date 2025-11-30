@@ -1,0 +1,178 @@
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin:0px; overflow:hidden;">
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+  >
+
+    <!-- Marker 1: Sun -->
+    <a-nft
+      type="nft"
+      url="https://raw.githubusercontent.com/Ernu-Catalina/TRM_Lab_2/main/assets/markers/1_sun/1_sun"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <a-entity
+        position="0 0 0"
+        scale="10 10 10"
+        gltf-model="the_star_sun.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+    </a-nft>
+
+    <!-- Marker 2: Mars -->
+    <a-nft
+      id="marsMarker"
+      type="nft"
+      url="https://raw.githubusercontent.com/Ernu-Catalina/TRM_Lab_2/main/assets/markers/2_star/2_star"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <a-entity
+        id="marsModel"
+        position="0 0 0"
+        scale="0.35 0.35 0.35"
+        gltf-model="mars.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+    </a-nft>
+
+    <!-- Marker 3: Moon -->
+    <a-nft
+      id="moonMarker"
+      type="nft"
+      url="https://raw.githubusercontent.com/Ernu-Catalina/TRM_Lab_2/main/assets/markers/3_moon/3_moon"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <a-entity
+        id="moonModel"
+        position="0 0 0"
+        scale="0.25 0.25 0.25"
+        gltf-model="moon.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+    </a-nft>
+
+    <!-- Marker 4: Phoenix -->
+    <a-nft
+      id="phoenixMarker"
+      type="nft"
+      url="https://raw.githubusercontent.com/Ernu-Catalina/TRM_Lab_2/main/assets/markers/4_comet/4_comet"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <a-entity
+        id="phoenixModel"
+        position="0 0 0"
+        scale="0.6 0.6 0.6"
+        gltf-model="planet_of_phoenix.glb"
+        rotation="0 0 0"
+        visible="false"
+      ></a-entity>
+    </a-nft>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    // Track which markers have been seen
+    let markersFound = {
+      sun: false,
+      mars: false,
+      moon: false,
+      phoenix: false
+    };
+
+    document.querySelector('a-scene').addEventListener('loaded', function() {
+
+      const sunMarker = document.querySelector('#sunMarker');
+      const marsMarker = document.querySelector('#marsMarker');
+      const moonMarker = document.querySelector('#moonMarker');
+      const phoenixMarker = document.querySelector('#phoenixMarker');
+
+      const sunModel = document.querySelector('#sunModel');
+      const marsModel = document.querySelector('#marsModel');
+      const moonModel = document.querySelector('#moonModel');
+      const phoenixModel = document.querySelector('#phoenixModel');
+
+      // Marker events
+      sunMarker.addEventListener('markerFound', () => {
+        markersFound.sun = true;
+        sunModel.setAttribute('visible', 'true');
+      });
+      sunMarker.addEventListener('markerLost', () => {
+        markersFound.sun = false;
+        sunModel.setAttribute('visible', 'false');
+      });
+
+      marsMarker.addEventListener('markerFound', () => {
+        markersFound.mars = true;
+        marsModel.setAttribute('visible', 'true');
+      });
+      marsMarker.addEventListener('markerLost', () => {
+        markersFound.mars = false;
+        marsModel.setAttribute('visible', 'false');
+      });
+
+      moonMarker.addEventListener('markerFound', () => {
+        markersFound.moon = true;
+        moonModel.setAttribute('visible', 'true');
+      });
+      moonMarker.addEventListener('markerLost', () => {
+        markersFound.moon = false;
+        moonModel.setAttribute('visible', 'false');
+      });
+
+      phoenixMarker.addEventListener('markerFound', () => {
+        markersFound.phoenix = true;
+        phoenixModel.setAttribute('visible', 'true');
+      });
+      phoenixMarker.addEventListener('markerLost', () => {
+        markersFound.phoenix = false;
+        phoenixModel.setAttribute('visible', 'false');
+      });
+
+    });
+  </script>
+</body>
