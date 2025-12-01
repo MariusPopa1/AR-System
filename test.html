@@ -113,8 +113,8 @@
 
 <a-entity camera>
   <a-entity id="weaponText"
-            position="0 -0.2 -1"
-            text="value: Choose your weapon; color: yellow; align: center; width: 2"
+            position="0 0 -1.5"
+            text="value: Choose your weapon and it's master; color: #7E2F2C; align: center; width: 1; baseline: center"
             visible="false">
   </a-entity>
 </a-entity>
@@ -129,15 +129,16 @@ let bladeScanned = false;
 
 
 
-// Hide the "Choose your weapon" text after 3 seconds
   document.querySelector('a-scene').addEventListener('loaded', () => {
     const text = document.getElementById("weaponText");
+
+    // Show the text immediately
     text.setAttribute("visible", true);
 
-    // Hide after 3 seconds
+    // Hide completely after 4 seconds
     setTimeout(() => {
       text.setAttribute("visible", false);
-    }, 3000);
+    }, 4000);
   });
 // Needle marker → unlock Hornet
 document.getElementById("markerNeedle").addEventListener("markerFound", () => {
