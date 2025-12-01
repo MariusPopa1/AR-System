@@ -22,204 +22,138 @@
   }
 </style>
 
-<body style="margin : 0px; overflow: hidden;">
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+<body style="margin:0; overflow:hidden;">
+<div class="arjs-loader"><div>Loading, please wait...</div></div>
+
+<a-scene
+  vr-mode-ui="enabled:false;"
+  renderer="logarithmicDepthBuffer:true;"
+  embedded
+  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled:false;"
+>
+
+  <!-- SILKSONG → Hornet -->
+  <a-nft
+      id="markerSilk"
+      type="nft"
+      url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/silksong"   
+      smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
   >
+      <a-entity
+          id="hornetModel"
+          position="110 0 -100"
+          scale="125 125 125"
+          gltf-model="models/hornet1.glb"
+          rotation="-90 0 0"
+          visible="false"
+      ></a-entity>
+  </a-nft>
 
-    <a-nft
-        id="firstMarker"
-        type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/silksong"   
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-    >
-
-
-        <a-entity
-            position="110 0 -100"
-            scale="125 125 125"
-            gltf-model="models/hornet1.glb"
-            rotation="-90 0 0"
-            visible="false"
-        ></a-entity>
-
-
-    </a-nft>
-
-    
-    <a-nft
-        type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/staff"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-    >
-
-
-          <a-entity
+  <!-- STAFF -->
+  <a-nft
+      id="markerStaff"
+      type="nft"
+      url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/staff"
+      smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+  >
+      <a-entity
         position="30 -10 -70"
         scale="80 80 80"
         gltf-model="models/staff.glb"
         rotation="-90 -45 0"
-  
       ></a-entity>
+  </a-nft>
 
-</a-nft>
-
-
-    <a-nft
-        type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/needle"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-    >
-
-    
-    <a-entity
-        position="110 0 -270"
-        scale="200 200 200"
-        gltf-model="models/needle.glb"
-        rotation="0 -135 0"
-    ></a-entity>
-
-
-
-
-</a-nft>
-
-    <a-nft
-        type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/blade"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-    >
-
-
-
+  <!-- NEEDLE -->
+  <a-nft
+      id="markerNeedle"
+      type="nft"
+      url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/needle"
+      smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+  >
       <a-entity
-     
+          position="110 0 -270"
+          scale="200 200 200"
+          gltf-model="models/needle.glb"
+          rotation="0 -135 0"
+      ></a-entity>
+  </a-nft>
+
+  <!-- BLADE -->
+  <a-nft
+      id="markerBlade"
+      type="nft"
+      url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/blade"
+      smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+  >
+      <a-entity
         position="55 0 -140"
         scale="10 10 10"
         gltf-model="models/blade.glb"
         rotation="90 0 -90"
-
       ></a-entity>
-      
-
   </a-nft>
 
-
- 
-
-    <a-nft
-        type="nft"
-        url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/hades"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-    >
-
-
-
+  <!-- HADES → Zagreus -->
+  <a-nft
+      id="markerHades"
+      type="nft"
+      url="https://raw.githubusercontent.com/MariusPopa1/AR-System/master/markers/hades"
+      smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+  >
       <a-entity
-     
+        id="zagreusModel"
         position="70 0 -100"
         scale="50 50 50"
         gltf-model="models/zagreus.glb"
         rotation="-90 0 0"
         visible="false"
       ></a-entity>
+  </a-nft>
 
+  <a-entity camera></a-entity>
+</a-scene>
 
-
-
-      
-
- </a-nft>
-
-    
-    
-    <a-entity camera></a-entity>
-  </a-scene>
-
-
-<img id="deathScreen" src="died.jpg"
-     style="
-        display:none;
-        position:fixed;
-        top:0; left:0;
-        width:100vw;
-        height:100vh;
-        object-fit:cover;
-        opacity:0;
-        transition: opacity 2s ease;
-        z-index:999999;">
+<img id="deathScreen" src="died.jfif"
+     style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; object-fit:cover; opacity:0; transition:opacity 2s ease; z-index:999999;">
 
 <script>
-let silksongUnlocked = false;
-let zagreusUnlocked = false;
+let needleScanned = false;
+let bladeScanned = false;
 
-// fade-in helper
+// Needle marker → unlock Hornet
+document.getElementById("markerNeedle").addEventListener("markerFound", () => {
+  needleScanned = true;
+});
+
+// Blade marker → unlock Zagreus
+document.getElementById("markerBlade").addEventListener("markerFound", () => {
+  bladeScanned = true;
+});
+
+// Silksong marker → show Hornet only if needle was scanned
+document.getElementById("markerSilk").addEventListener("markerFound", () => {
+  if (needleScanned) {
+    document.getElementById("hornetModel").setAttribute("visible", true);
+  }
+});
+
+// Hades marker → show Zagreus only if blade was scanned
+document.getElementById("markerHades").addEventListener("markerFound", () => {
+  if (bladeScanned) {
+    document.getElementById("zagreusModel").setAttribute("visible", true);
+  }
+});
+
+// Death screen timer (unchanged)
 function showDeathScreen() {
   const img = document.getElementById("deathScreen");
   img.style.display = "block";
-
-  // allow display to apply THEN fade in
-  setTimeout(() => {
-    img.style.opacity = "1";
-  }, 50);
+  setTimeout(() => img.style.opacity = "1", 50);
 }
 
-// --- MARKER EVENTS ---
-
-// Blade → unlock Zagreus
-document.querySelector('a-nft[url*="blade"]').addEventListener("markerFound", () => {
-  zagreusUnlocked = true;
-});
-
-// Needle → unlock Silksong
-document.querySelector('a-nft[url*="needle"]').addEventListener("markerFound", () => {
-  silksongUnlocked = true;
-});
-
-// Staff → show death image after 5 seconds
-document.querySelector('a-nft[url*="staff"]').addEventListener("markerFound", () => {
-  setTimeout(showDeathScreen, 5000);
-});
-
-// Block Silksong if not unlocked
-const silksongEntity = document.querySelector('#firstMarker'); // your silksong marker
-silksongEntity.addEventListener("markerFound", () => {
-  if (!silksongUnlocked) {
-    silksongEntity.setAttribute("visible", false);
-  } else {
-    silksongEntity.setAttribute("visible", true);
-  }
-});
-
-// Block Zagreus if not unlocked
-const zagreusEntity = document.querySelector('a-nft[url*="hades"]');
-zagreusEntity.addEventListener("markerFound", () => {
-  if (!zagreusUnlocked) {
-    zagreusEntity.setAttribute("visible", false);
-  } else {
-    zagreusEntity.setAttribute("visible", true);
-  }
+document.getElementById("markerStaff").addEventListener("markerFound", () => {
+  setTimeout(showDeathScreen, 2000);
 });
 </script>
 
