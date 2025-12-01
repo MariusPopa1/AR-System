@@ -111,16 +111,28 @@
       ></a-entity>
   </a-nft>
 
+  <a-entity id="weaponText" 
+          position="0 1.5 -2" 
+          text="value: Choose your weapon; color: red; align: center; width: 4"
+          visible="true">
+</a-entity>
+
   <a-entity camera></a-entity>
 </a-scene>
 
-<img id="deathScreen" src="died.jfif"
+<img id="deathScreen" src="died.png"
      style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; object-fit:cover; opacity:0; transition:opacity 2s ease; z-index:999999;">
 
 <script>
 let needleScanned = false;
 let bladeScanned = false;
 
+
+
+// Hide the "Choose your weapon" text after 3 seconds
+setTimeout(() => {
+  document.getElementById("weaponText").setAttribute("visible", false);
+}, 3000);
 // Needle marker → unlock Hornet
 document.getElementById("markerNeedle").addEventListener("markerFound", () => {
   needleScanned = true;
