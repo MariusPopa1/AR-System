@@ -156,37 +156,70 @@
     <a-entity camera></a-entity>
   </a-scene>
 
-  <script>
-    let firstMarkerScanned = false;
 
-    // Wait for the scene to load
-    document.querySelector('a-scene').addEventListener('loaded', function() {
-      const firstMarker = document.querySelector('#firstMarker');
-      const secondMarker = document.querySelector('#secondMarker');
-      const trexModel = document.querySelector('#trexModel');
+<img id="deathScreen" src="died.jng"
+     style="
+        display:none;
+        position:fixed;
+        top:0; left:0;
+        width:100vw;
+        height:100vh;
+        object-fit:cover;
+        opacity:0;
+        transition: opacity 2s ease;
+        z-index:999999;">
 
-      // Listen for when the first marker is found
-      firstMarker.addEventListener('markerFound', function() {
-        console.log('First marker (cats) found!');
-        firstMarkerScanned = true;
-      });
+<script>
+let silksongUnlocked = false;
+let zagreusUnlocked = false;
 
-      // Listen for when the second marker is found
-      secondMarker.addEventListener('markerFound', function() {
-        console.log('Second marker found!');
-        // Only show the T-Rex if the first marker has been scanned
-        if (firstMarkerScanned) {
-          trexModel.setAttribute('visible', 'true');
-          console.log('T-Rex is now visible!');
-        } else {
-          console.log('First marker must be scanned first!');
-        }
-      });
+// fade-in helper
+function showDeathScreen() {
+  const img = document.getElementById("deathScreen");
+  img.style.display = "block";
 
-      // Hide T-Rex when second marker is lost
-      secondMarker.addEventListener('markerLost', function() {
-        trexModel.setAttribute('visible', 'false');
-      });
-    });
-  </script>
+  // allow display to apply THEN fade in
+  setTimeout(() => {
+    img.style.opacity = "1";
+  }, 50);
+}
+
+// --- MARKER EVENTS ---
+
+// Blade → unlock Zagreus
+document.querySelector('a-nft[url*="blade"]').addEventListener("markerFound", () => {
+  zagreusUnlocked = true;
+});
+
+// Needle → unlock Silksong
+document.querySelector('a-nft[url*="needle"]').addEventListener("markerFound", () => {
+  silksongUnlocked = true;
+});
+
+// Staff → show death image after 5 seconds
+document.querySelector('a-nft[url*="staff"]').addEventListener("markerFound", () => {
+  setTimeout(showDeathScreen, 5000);
+});
+
+// Block Silksong if not unlocked
+const silksongEntity = document.querySelector('#firstMarker'); // your silksong marker
+silksongEntity.addEventListener("markerFound", () => {
+  if (!silksongUnlocked) {
+    silksongEntity.setAttribute("visible", false);
+  } else {
+    silksongEntity.setAttribute("visible", true);
+  }
+});
+
+// Block Zagreus if not unlocked
+const zagreusEntity = document.querySelector('a-nft[url*="hades"]');
+zagreusEntity.addEventListener("markerFound", () => {
+  if (!zagreusUnlocked) {
+    zagreusEntity.setAttribute("visible", false);
+  } else {
+    zagreusEntity.setAttribute("visible", true);
+  }
+});
+</script>
+
 </body>
